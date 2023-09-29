@@ -10,7 +10,7 @@ It is slightly annoying to use.
 ## Example code
 main.rs:
 ```rust
-use vec2d::csv_to_vec2d_ref;
+use very_primitive_tables::vec2d::csv_to_vec2d_ref;
 use very_primitive_tables::Table;
 
 fn main() {
