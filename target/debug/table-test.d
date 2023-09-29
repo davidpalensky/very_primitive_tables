@@ -1,0 +1,1 @@
+/home/david/dev/rust/table-test/target/debug/table-test: /home/david/dev/rust/table-test/src/lib.rs /home/david/dev/rust/table-test/src/main.rs /home/david/dev/rust/table-test/src/vec2d.rs /home/david/dev/rust/table-test/test.csv
