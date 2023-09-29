@@ -2,7 +2,7 @@
 name = "very_primitive_tables"
 description = "Primitive pretty-printing functionality for tables. This is mainly meant as a way for me to learn how to publish code. There are surely other options."
 authors = ["David Palensky <david.palensky@gmail.com>"]
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 exclude = ["main.rs", "test.csv"]
 readme = "README.md"
