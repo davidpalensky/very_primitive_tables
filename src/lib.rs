@@ -1,5 +1,5 @@
 //! Library for pretty printing tables.
-
+pub mod vec2d;
 use std::cmp::max;
 
 #[derive(Debug)]
