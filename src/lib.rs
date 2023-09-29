@@ -18,9 +18,22 @@ pub struct Table<'a> {
 
 #[derive(Debug, Clone, Copy)]
 pub enum TableError {
-    MismatchedRowWidth,
-    InvalidCSV,
+    MismatchedRowWidth(usize, usize),
 }
+
+impl std::fmt::Display for TableError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        use TableError as TE;
+        write!(
+            f,
+            "{}",
+            match self {
+                TE::MismatchedRowWidth(a, b) => format!("Mismatched row widths {a}, {b}"),
+            }
+        )
+    }
+}
+impl std::error::Error for TableError {}
 
 pub type TableResult<T> = Result<T, TableError>;
 
@@ -39,7 +52,7 @@ impl<'a> Table<'a> {
         // Check width
         use TableError as TE;
         if r.len() != self.col_n {
-            return Err(TE::MismatchedRowWidth);
+            return Err(TE::MismatchedRowWidth(r.len(), self.col_n));
         }
         self.data.push(r.to_vec());
         // Update lengths
@@ -105,7 +118,7 @@ impl<'a> Table<'a> {
     ///
     /// Could return TableError::MismatchedRowWidth if there are a different number
     /// of elements in rows.
-    pub fn from_vec2d(vector: &Vec<Vec<&'a str>>) -> TableResult<Table<'a>> {
+    pub fn from_vec2d<'b>(vector: &Vec<Vec<&'a str>>) -> TableResult<Table<'a>> {
         // Count columns in first row.
         let cols = Table::count_csv_cols(&vector);
         // Add rows
